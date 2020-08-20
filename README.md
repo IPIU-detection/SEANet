@@ -1,46 +1,31 @@
 
-# Supervised Edge Attention Network for Accurate Image Instance Segmentation
+# Supervised Edge Attention Network forAccurate Image Instance Segmentation
 
 Our work is based on the open-mmlab's [MMDetection](https://arxiv.org/abs/1906.07155), especially thanks to MMLab.
 
 ## Summary
-Effectively keeping the boundary of the mask complete is important in instance segmentation. In this task, many works segment instance based on a bounding box from the box head, which means the quality of the detection also affects the completeness of the mask. To circumvent this issue, we propose a fully convolutional box head and a supervised edge attention module in mask head. The box head contains one new IoU prediction branch. It learns association between object features and detected bounding boxes to provide more accurate bounding boxes for segmentation. The edge attention module utilizes attention mechanism to highlight object and suppress background noise, and a supervised branch is devised to guide the network to focus on the edge of instances precisely. To evaluate the effectiveness, we conduct experiments on COCO benchmark dataset. Without bells and whistles, our approach achieves impressive and robust improvement compared to baseline models.
-### Major features
+Effectively keeping boundary of the mask complete is im-portant in instance segmentation. In this task, many works segmentinstance based on a bounding box from the box head, which means thequality of the detection also affects the completeness of the mask. Tocircumvent this issue, we propose a fully convolutional box head and asupervised edge attention module in mask head. The box head containsone new IoU prediction  branch. It learns association between objectfeatures and detected bounding boxes to provide more accurate boundingboxes for segmentation. The edge attention module utilizes attentionmechanism to highlight object and suppress background noise, and asupervised branch is devised to guide the network to focus on the edge ofinstances precisely. To evaluate the effectiveness, we conduct experimentson COCO dataset. Without bells and whistles, our approach achievesimpressive and robust improvement compared to baseline models.
+![image](docs/fig1.jpg)
+![The model structur image](docs/fig2.jpg)
+## Highlights
+- We  take  into  consideration  the  quality  of  the  bounding  box  in  instancesegmentation task. We apply fully convolutional box head and introduce a newbranch name “B-IoU” to learn the IoU scores between the detected boundingboxes and their corresponding ground-truth boxes for down-weighting thelow-quality detected bounding boxes with poor regression performance.
+- As the boundaries of the instances are easily overwhelmed by the backgroundnoise  or  other  objects,  we  propose  supervised  edge  attention  module  tosuppress  the  noise  and  highlight  the  foreground.  Especially,  we  design  asupervised  branch  to  guide  the  network  to  learn  the  boundaries  of  theobjects.
+- Without bells and whistles, our approach consistently improves the models ofMask R-CNN series, and is no limited to these models. Since the idea of ourwork is easily implemented and can improve both the accuracy of detectionand segmentation, it can be extended to other principles for instance-levelrecognition tasks.
 
-- **Modular Design**
+## Installation
+SEANet is implemennted on top of mmdetection. Threrfore the installation is the same as mmdetection.
 
-  We decompose the detection framework into different components and one can easily construct a customized object detection framework by combining different modules.
+Please refer to [INSTALL.md](docs/INSTALL.md) for installation and dataset preparation.
 
-- **Support of multiple frameworks out of box**
 
-  The toolbox directly supports popular and contemporary detection frameworks, *e.g.* Faster RCNN, Mask RCNN, RetinaNet, etc.
+## Train and inference
 
-- **High efficiency**
+SEANet configs could be found in [configs/SEANet](configs/SEANet)
+- **Training**
+## Results on COCO val2017
 
-  All basic bbox and mask operations run on GPUs now. The training speed is faster than or comparable to other codebases, including [Detectron](https://github.com/facebookresearch/Detectron), [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark) and [SimpleDet](https://github.com/TuSimple/simpledet).
-
-- **State of the art**
-
-  The toolbox stems from the codebase developed by the *MMDet* team, who won [COCO Detection Challenge](http://cocodataset.org/#detection-leaderboard) in 2018, and we keep pushing it forward.
-
-Apart from MMDetection, we also released a library [mmcv](https://github.com/open-mmlab/mmcv) for computer vision research, which is heavily depended on by this toolbox.
-
-## License
-
-This project is released under the [Apache 2.0 license](LICENSE).
-
-## Changelog
-
-v1.0rc1 was released in 13/12/2019, with more than 20 bug fixes and 30 improvements and new features.
-Please refer to [CHANGELOG.md](docs/CHANGELOG.md) for details and history versions.
-
-## Benchmark and model zoo
-
-Supported methods and backbones are shown in the below table.
-Results and models are available in the [Model zoo](docs/MODEL_ZOO.md).
-
-|                    | ResNet   | ResNeXt  | SENet    | VGG      | HRNet |
-|--------------------|:--------:|:--------:|:--------:|:--------:|:-----:|
+|  Method      |  Backbone  | SEANet  | APm    | APm       | HRNet |
+|:--------------------:|:--------:|:--------:|:--------:|:--------:|:-----:|
 | RPN                | ✓        | ✓        | ☐        | ✗        | ✓     |
 | Fast R-CNN         | ✓        | ✓        | ☐        | ✗        | ✓     |
 | Faster R-CNN       | ✓        | ✓        | ☐        | ✗        | ✓     |
@@ -62,38 +47,5 @@ Results and models are available in the [Model zoo](docs/MODEL_ZOO.md).
 | FreeAnchor         | ✓        | ✓        | ☐        | ✗        | ✓     |
 | SENet              | ✓        | ✓        | ☐        | ✗        | ✓     |
 
-Other features
-- [x] DCNv2
-- [x] Group Normalization
-- [x] Weight Standardization
-- [x] OHEM
-- [x] Soft-NMS
-- [x] Generalized Attention
-- [x] GCNet
-- [x] Mixed Precision (FP16) Training
-
-
-## Installation
-
-Please refer to [INSTALL.md](docs/INSTALL.md) for installation and dataset preparation.
-
-
-## Get Started
-
-Please see [GETTING_STARTED.md](docs/GETTING_STARTED.md) for the basic usage of MMDetection.
-
-## Contributing
-
-We appreciate all contributions to improve MMDetection. Please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the contributing guideline.
-
-## Acknowledgement
-
-MMDetection is an open source project that is contributed by researchers and engineers from various colleges and companies. We appreciate all the contributors who implement their methods or add new features, as well as users who give valuable feedbacks.
-We wish that the toolbox and benchmark could serve the growing research community by providing a flexible toolkit to reimplement existing methods and develop their own new detectors.
-
-
-## Citation
-
-If you use this toolbox or benchmark in your research, please cite this project.
-
-
+##Acknowledgement
+This work was partially supported by the State Key Pro-gram of National Natural Science of China (No. 61836009), the National NaturalScience Foundation of China (Nos. U1701267, 61871310, 61773304, 61806154,61802295 and 61801351), the Fund for Foreign Scholars in University Researchand Teaching Programs (the 111 Project) (No. B07048), the Major ResearchPlan of the National Natural Science Foundation of China (Nos. 91438201 and91438103).

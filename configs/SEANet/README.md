@@ -1,5 +1,0 @@
-# SENet
-
-## Introduction
-
-
