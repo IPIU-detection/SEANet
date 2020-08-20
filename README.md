@@ -22,30 +22,28 @@ Please refer to [INSTALL.md](docs/INSTALL.md) for installation and dataset prepa
 
 SEANet configs could be found in [configs/SEANet](configs/SEANet)
 - **Training**
+```shell
+# single-gpu training
+python tools/train.py ${CONFIG_FILE}
+
+# multi-gpu training
+./tools/dist_train.sh ${CONFIG_FILE} ${GPU_NUM} [optional arguments]
+```
+- **Inference**
+```shell
+# single-gpu testing
+python tools/test.py ${CONFIG_FILE} ${CHECKPOINT_FILE} --out ${RESULT_FILE} --eval bbox segm [--show]
+
+# multi-gpu testing
+./tools/dist_test.sh ${CONFIG_FILE} ${CHECKPOINT_FILE} ${GPU_NUM} --out ${RESULT_FILE} --eval bbox
+```
 ## Results on COCO val2017
 
-|  Method      |  Backbone  | SEANet  | APm    | APm       | HRNet |
-|:--------------------:|:--------:|:--------:|:--------:|:--------:|:-----:|
-| RPN                | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Fast R-CNN         | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Faster R-CNN       | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Mask R-CNN         | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Cascade R-CNN      | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Cascade Mask R-CNN | ✓        | ✓        | ☐        | ✗        | ✓     |
-| SSD                | ✗        | ✗        | ✗        | ✓        | ✗     |
-| RetinaNet          | ✓        | ✓        | ☐        | ✗        | ✓     |
-| GHM                | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Mask Scoring R-CNN | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Double-Head R-CNN  | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Grid R-CNN (Plus)  | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Hybrid Task Cascade| ✓        | ✓        | ☐        | ✗        | ✓     |
-| Libra R-CNN        | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Guided Anchoring   | ✓        | ✓        | ☐        | ✗        | ✓     |
-| FCOS               | ✓        | ✓        | ☐        | ✗        | ✓     |
-| RepPoints          | ✓        | ✓        | ☐        | ✗        | ✓     |
-| Foveabox           | ✓        | ✓        | ☐        | ✗        | ✓     |
-| FreeAnchor         | ✓        | ✓        | ☐        | ✗        | ✓     |
-| SENet              | ✓        | ✓        | ☐        | ✗        | ✓     |
-
-##Acknowledgement
+|  Method      |  Backbone  | SEANet  | $AP^{m}$ | $AP_{0.5}^{m}$ | $AP_{0.75}^{m}$ | $AP^{b}$ | $AP_{0.5}^{b}$ | $AP_{0.75}^{b}$ |
+|:--------------------:|:--------:|:--------:|:--------:|:--------:|:-----:|:-----:|:-----:|:-----:|
+|| ResNet-50-FPN| ✗        | 34.5        | 55.8        | 36.7     | 38.0     | 58.9     | 42.0      |
+|| ResNet-50-FPN| ✓        | 36.0        | 55.4        | 39.2     | 39.4     | 57.7     | 42.7      |
+| Mask R-CNN         | ResNet-101-FPN| ✗        | 36.5        | 58.1        | 39.0     | 40.3     | 61.5     | 44.1      |
+|| ResNet-101-FPN| ✓        | 37.7        | 57.8        | 40.8     | 41.7     | 60.0     | 45.6      |
+## Acknowledgement
 This work was partially supported by the State Key Pro-gram of National Natural Science of China (No. 61836009), the National NaturalScience Foundation of China (Nos. U1701267, 61871310, 61773304, 61806154,61802295 and 61801351), the Fund for Foreign Scholars in University Researchand Teaching Programs (the 111 Project) (No. B07048), the Major ResearchPlan of the National Natural Science Foundation of China (Nos. 91438201 and91438103).
