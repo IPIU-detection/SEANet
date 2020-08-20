@@ -41,7 +41,7 @@ python tools/test.py ${CONFIG_FILE} ${CHECKPOINT_FILE} --out ${RESULT_FILE} --ev
 
 The baseline network used in the following table is Mask R-CNN.
 
-|  Backbone  | SEANet  | $AP^{m}$ | $AP_{0.5}^{m}$ | $AP_{0.75}^{m}$ | $AP^{b}$ | $AP_{0.5}^{b}$ | $AP_{0.75}^{b}$ |
+|  Backbone  | SEANet  | APm | APm<sub>50</sub> | APm<sub>75</sub> | APb | APb<sub>50</sub> | APb<sub>75</sub> |
 |:--------:|:--------:|:--------:|:--------:|:-----:|:-----:|:-----:|:-----:|
 | ResNet-50-FPN| ✗        | 34.5        | 55.8        | 36.7     | 38.0     | 58.9     | 42.0      |
 | ResNet-50-FPN| ✓        | 36.0        | 55.4        | 39.2     | 39.4     | 57.7     | 42.7      |
