@@ -1,8 +1,10 @@
 
-# SENet
+# Supervised Edge Attention Network for Accurate Image Instance Segmentation
 
-Our work is based on the [MMDetection](https://arxiv.org/abs/1906.07155), especially thanks to MMLab
+Our work is based on the open-mmlab's [MMDetection](https://arxiv.org/abs/1906.07155), especially thanks to MMLab.
 
+## Summary
+Effectively keeping the boundary of the mask complete is important in instance segmentation. In this task, many works segment instance based on a bounding box from the box head, which means the quality of the detection also affects the completeness of the mask. To circumvent this issue, we propose a fully convolutional box head and a supervised edge attention module in mask head. The box head contains one new IoU prediction branch. It learns association between object features and detected bounding boxes to provide more accurate bounding boxes for segmentation. The edge attention module utilizes attention mechanism to highlight object and suppress background noise, and a supervised branch is devised to guide the network to focus on the edge of instances precisely. To evaluate the effectiveness, we conduct experiments on COCO benchmark dataset. Without bells and whistles, our approach achieves impressive and robust improvement compared to baseline models.
 ### Major features
 
 - **Modular Design**
