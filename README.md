@@ -39,11 +39,15 @@ python tools/test.py ${CONFIG_FILE} ${CHECKPOINT_FILE} --out ${RESULT_FILE} --ev
 ```
 ## Results on COCO val2017
 
-|  Method      |  Backbone  | SEANet  | $AP^{m}$ | $AP_{0.5}^{m}$ | $AP_{0.75}^{m}$ | $AP^{b}$ | $AP_{0.5}^{b}$ | $AP_{0.75}^{b}$ |
-|:--------------------:|:--------:|:--------:|:--------:|:--------:|:-----:|:-----:|:-----:|:-----:|
-|| ResNet-50-FPN| ✗        | 34.5        | 55.8        | 36.7     | 38.0     | 58.9     | 42.0      |
-|| ResNet-50-FPN| ✓        | 36.0        | 55.4        | 39.2     | 39.4     | 57.7     | 42.7      |
-| Mask R-CNN         | ResNet-101-FPN| ✗        | 36.5        | 58.1        | 39.0     | 40.3     | 61.5     | 44.1      |
-|| ResNet-101-FPN| ✓        | 37.7        | 57.8        | 40.8     | 41.7     | 60.0     | 45.6      |
+The baseline network used in the following table is Mask R-CNN.
+
+|  Backbone  | SEANet  | $AP^{m}$ | $AP_{0.5}^{m}$ | $AP_{0.75}^{m}$ | $AP^{b}$ | $AP_{0.5}^{b}$ | $AP_{0.75}^{b}$ |
+|:--------:|:--------:|:--------:|:--------:|:-----:|:-----:|:-----:|:-----:|
+| ResNet-50-FPN| ✗        | 34.5        | 55.8        | 36.7     | 38.0     | 58.9     | 42.0      |
+| ResNet-50-FPN| ✓        | 36.0        | 55.4        | 39.2     | 39.4     | 57.7     | 42.7      |
+| ResNet-101-FPN| ✗        | 36.5        | 58.1        | 39.0     | 40.3     | 61.5     | 44.1      |
+| ResNet-101-FPN| ✓        | 37.7        | 57.8        | 40.8     | 41.7     | 60.0     | 45.6      |
+| ResNeXt-101-FPN| ✗        | 37.7        | 59.9        | 40.4     | 42.0     | 63.1     | 46.1      |
+| ResNeXt-101-FPN| ✓        | 39.4        | 60.1        | 42.8     | 44.1     | 62.6     | 48.1      |
 ## Acknowledgement
 This work was partially supported by the State Key Pro-gram of National Natural Science of China (No. 61836009), the National NaturalScience Foundation of China (Nos. U1701267, 61871310, 61773304, 61806154,61802295 and 61801351), the Fund for Foreign Scholars in University Researchand Teaching Programs (the 111 Project) (No. B07048), the Major ResearchPlan of the National Natural Science Foundation of China (Nos. 91438201 and91438103).
